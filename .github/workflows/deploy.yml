@@ -2,7 +2,7 @@ name: Deploy Docusaurus to GitHub Pages
 
 on:
   push:
-    # Action ab dono branches par trigger hoga
+    # Action ab in dono branches par trigger hoga
     branches:
       - main            
       - 001-spec-kit-setup  
@@ -33,15 +33,15 @@ jobs:
           node-version: 20
           cache: 'npm'
           
-      
+      # Clean cache (Optional but recommended)
       - name: Clean npm cache (Pre-install safety)
         run: npm cache clean --force
         
-     
-      - name: Install dependencies (npm ci --prefix)
-        run: npm ci --prefix Hackathon
+      # [CRITICAL FIX] npm ci ko npm install se badal rahe hain taaki lock file error hal ho jaye.
+      - name: Install dependencies (npm install --prefix)
+        run: npm install --prefix Hackathon
 
-      # [CRITICAL FIX] Build Docusaurus using --prefix Hackathon
+      # Build Docusaurus using --prefix Hackathon
       - name: Build Docusaurus website
         run: npm run build --prefix Hackathon
 
@@ -50,6 +50,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          
+          # Build output ka path Hackathon folder ke andar set kiya
           publish_dir: ./Hackathon/build 
           publish_branch: gh-pages
