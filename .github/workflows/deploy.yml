@@ -17,28 +17,20 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
+          
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
-
-      - name: Show node/npm version
-        run: |
-          node --version
-          npm --version
 
       - name: Install dependencies
-        # use npm ci if you have package-lock.json committed (recommended)
-        run: |
-          if [ -f package-lock.json ]; then npm ci --prefer-offline --no-audit --progress=false; else npm install --no-audit --prefer-offline --progress=false; fi
+        run: npm install
 
       - name: Build Docusaurus website
         run: npm run build
