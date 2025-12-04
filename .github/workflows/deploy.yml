@@ -2,7 +2,10 @@ name: Deploy Docusaurus to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    # Action ab dono branches par trigger hoga
+    branches:
+      - main            
+      - 001-spec-kit-setup  
 
 permissions:
   contents: write
@@ -11,28 +14,42 @@ permissions:
 
 jobs:
   deploy:
+    name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
-
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
+          
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
+          
+      
+      - name: Clean npm cache (Pre-install safety)
+        run: npm cache clean --force
+        
+     
+      - name: Install dependencies (npm ci --prefix)
+        run: npm ci --prefix Hackathon
 
-      - name: Install dependencies
-        run: npm ci || npm install
+      # [CRITICAL FIX] Build Docusaurus using --prefix Hackathon
+      - name: Build Docusaurus website
+        run: npm run build --prefix Hackathon
 
-      - name: Build
-        run: npm run build
-
-      - name: Deploy
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          
+          publish_dir: ./Hackathon/build 
           publish_branch: gh-pages
