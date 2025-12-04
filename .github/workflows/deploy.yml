@@ -2,9 +2,9 @@ name: Deploy Docusaurus to GitHub Pages
 
 on:
   push:
-    # ✅ Ab yeh Action sirf tab chalega jab 'main' branch par push hoga.
     branches:
-      - main 
+      - main
+      - 001-spec-kit-setup
 
 permissions:
   contents: write
