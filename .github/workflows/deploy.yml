@@ -1,1 +1,41 @@
-name: Deploy Docusaurus to GitHub Pages\n\non:\n  push:\n    branches:\n      - main\n\npermissions:\n  contents: write\n  pages: write\  id-token: write\n\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    defaults:\n      run:\n        working-directory: my-book\n\n    steps:\n      - name: Checkout\n        uses: actions/checkout@v4\n\n      - name: Setup Node\n        uses: actions/setup-node@v4\n        with:\n          node-version: 20\n          cache: npm\n          cache-dependency-path: my-book/package-lock.json\n\n      - name: Install deps\n        run: npm install\n\n      - name: Build\n        run: npm run build\n\n      - name: Deploy\n        uses: peaceiris/actions-gh-pages@v3\n        with:\n          github_token: ${{ secrets.GITHUB_TOKEN }}\n          publish_dir: my-book/build
+name: Deploy Docusaurus to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      # CRITICAL FIX: Install dependencies using --prefix Hackathon
+      # This forces NPM to look inside the Hackathon folder.
+      - name: Install dependencies
+        run: npm install --prefix Hackathon
+
+      # CRITICAL FIX: Build Docusaurus using --prefix Hackathon
+      - name: Build
+        run: npm run build --prefix Hackathon
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Publish directory must point directly to the built folder (Hackathon/build).
+          publish_dir: Hackathon/build
