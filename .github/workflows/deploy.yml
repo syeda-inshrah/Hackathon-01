@@ -2,8 +2,9 @@ name: Deploy Docusaurus to GitHub Pages
 
 on:
   push:
+    # Trigger deployment ONLY on the main branch
     branches:
-      - main
+      - main            
 
 permissions:
   contents: write
@@ -12,32 +13,36 @@ permissions:
 
 jobs:
   deploy:
+    name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: Hackathon # Set working directory to the Docusaurus project root
-
+    
+    # [REMOVE] The 'defaults' block is removed to fix the triple-nesting error
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
+          
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-          cache-dependency-path: package-lock.json # Relative to working-directory: Hackathon
-
+          cache: 'npm'
+          
+      # CRITICAL FIX: Install dependencies using --prefix Hackathon
+      # This ensures package.json is found correctly.
       - name: Install dependencies
-        run: npm install # Runs directly within the Hackathon directory
+        run: npm install --prefix Hackathon
 
+      # CRITICAL FIX: Build Docusaurus using --prefix Hackathon
       - name: Build Docusaurus website
-        run: npm run build # Runs directly within the Hackathon directory
+        run: npm run build --prefix Hackathon
 
+      # Deploy using the stable peaceiris action
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build # Relative to working-directory: Hackathon
+          # Publish output must point to the folder Hackathon/build
+          publish_dir: Hackathon/build
