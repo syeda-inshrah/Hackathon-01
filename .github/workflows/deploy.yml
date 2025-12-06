@@ -13,29 +13,31 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    defaults:
+      run:
+        working-directory: Hackathon # Set working directory to the Docusaurus project root
 
-      - name: Setup Node
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: npm
+          cache-dependency-path: package-lock.json # Relative to working-directory: Hackathon
 
-      # CRITICAL FIX: Install dependencies using --prefix Hackathon
-      # This forces NPM to look inside the Hackathon folder.
       - name: Install dependencies
-        run: npm install --prefix Hackathon
+        run: npm install # Runs directly within the Hackathon directory
 
-      # CRITICAL FIX: Build Docusaurus using --prefix Hackathon
-      - name: Build
-        run: npm run build --prefix Hackathon
+      - name: Build Docusaurus website
+        run: npm run build # Runs directly within the Hackathon directory
 
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # Publish directory must point directly to the built folder (Hackathon/build).
-          publish_dir: Hackathon/build
+          publish_dir: build # Relative to working-directory: Hackathon
