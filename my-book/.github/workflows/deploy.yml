@@ -1,0 +1,47 @@
+name: Deploy Docusaurus to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+
+    # NOTE: 'defaults' block is intentionally removed to avoid triple-nesting error.
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      # FIX: Apply working-directory ONLY to this installation step
+      - name: Install dependencies
+        run: npm install
+        working-directory: Hackathon
+
+      # FIX: Apply working-directory ONLY to this build step
+      - name: Build Docusaurus website
+        run: npm run build
+        working-directory: Hackathon
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Publish path is relative to the repository root: Hackathon/build
+          publish_dir: Hackathon/build
