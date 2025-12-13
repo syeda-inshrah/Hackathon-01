@@ -5,31 +5,26 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Hackathon Book', // FIX: Updated site title
+  tagline: 'Documentation for our awesome project',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    v4: true, 
   },
 
-  // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  // FIX: Set the production url and base URL for GitHub Pages deployment
+  url: 'https://syeda-inshrah.github.io',
+  baseUrl: '/Hackathon-01/',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  // FIX: GitHub pages deployment config.
+  organizationName: 'syeda-inshrah', // Your GitHub user name
+  projectName: 'Hackathon-01', // Your repository name
+  deploymentBranch: 'gh-pages', // Docusaurus deploys to this branch
 
   onBrokenLinks: 'throw',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -40,11 +35,10 @@ const config: Config = {
       'classic',
       {
         docs: {
-          sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
+          // FIX: Changed to .js to match the file we generated earlier
+          sidebarPath: './sidebars.js',
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/syeda-inshrah/Hackathon-01/tree/main/my-book/',
         },
         blog: {
           showReadingTime: true,
@@ -52,11 +46,8 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
+            'https://github.com/syeda-inshrah/Hackathon-01/tree/main/my-book/',
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -75,9 +66,9 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'My Site',
+      title: 'Hackathon Book', // FIX: Updated navbar title
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Hackathon Book Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -85,11 +76,11 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Book Sections', // Updated label for clarity
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/syeda-inshrah/Hackathon-01', // FIX: Updated GitHub link
           label: 'GitHub',
           position: 'right',
         },
@@ -102,8 +93,9 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/introduction',
+              label: 'Book Introduction',
+              // 🛑 FIX: Link to the new file: 01-introduction.md
+              to: '/docs/01-introduction', 
             },
           ],
         },
@@ -133,12 +125,12 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/syeda-inshrah/Hackathon-01', // FIX: Updated GitHub link
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} My Hackathon Project. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
