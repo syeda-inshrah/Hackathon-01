@@ -33,7 +33,7 @@ const config: Config = {
       'classic',
       {
         docs: {
-          sidebarPath: './sidebars.js',
+          sidebarPath: './sidebars.ts', // ✅ Changed from .js to .ts
           editUrl:
             'https://github.com/syeda-inshrah/Hackathon-01/tree/main/my-book/',
         },
@@ -90,7 +90,7 @@ const config: Config = {
           items: [
             {
               label: 'Book Introduction',
-              to: '/docs/01-introduction', // Fixed link to 01-introduction.md
+              to: '/docs/introduction', // ✅ Updated to match your sidebar
             },
           ],
         },
