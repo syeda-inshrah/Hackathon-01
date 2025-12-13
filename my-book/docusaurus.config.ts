@@ -5,23 +5,20 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'Hackathon Book', // FIX: Updated site title
+  title: 'Hackathon Book',
   tagline: 'Documentation for our awesome project',
   favicon: 'img/favicon.ico',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, 
+    v4: true,
   },
 
-  // FIX: Set the production url and base URL for GitHub Pages deployment
   url: 'https://syeda-inshrah.github.io',
   baseUrl: '/Hackathon-01/',
 
-  // FIX: GitHub pages deployment config.
-  organizationName: 'syeda-inshrah', // Your GitHub user name
-  projectName: 'Hackathon-01', // Your repository name
-  deploymentBranch: 'gh-pages', // Docusaurus deploys to this branch
+  organizationName: 'syeda-inshrah',
+  projectName: 'Hackathon-01',
+  deploymentBranch: 'gh-pages',
 
   onBrokenLinks: 'throw',
 
@@ -35,8 +32,8 @@ const config: Config = {
       'classic',
       {
         docs: {
-          // FIX: Changed to .js to match the file we generated earlier
-          sidebarPath: './sidebars.js',
+          // ✅ Fixed sidebar path
+          sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
             'https://github.com/syeda-inshrah/Hackathon-01/tree/main/my-book/',
         },
@@ -53,20 +50,19 @@ const config: Config = {
           onUntruncatedBlogPosts: 'warn',
         },
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: require.resolve('./src/css/custom.css'),
         },
       } satisfies Preset.Options,
     ],
   ],
 
   themeConfig: {
-    // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'Hackathon Book', // FIX: Updated navbar title
+      title: 'Hackathon Book',
       logo: {
         alt: 'Hackathon Book Logo',
         src: 'img/logo.svg',
@@ -76,11 +72,11 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Book Sections', // Updated label for clarity
+          label: 'Book Sections',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/syeda-inshrah/Hackathon-01', // FIX: Updated GitHub link
+          href: 'https://github.com/syeda-inshrah/Hackathon-01',
           label: 'GitHub',
           position: 'right',
         },
@@ -94,39 +90,23 @@ const config: Config = {
           items: [
             {
               label: 'Book Introduction',
-              // 🛑 FIX: Link to the new file: 01-introduction.md
-              to: '/docs/01-introduction', 
+              to: '/docs/01-introduction',
             },
           ],
         },
         {
           title: 'Community',
           items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
-            },
+            {label: 'Stack Overflow', href: 'https://stackoverflow.com/questions/tagged/docusaurus'},
+            {label: 'Discord', href: 'https://discordapp.com/invite/docusaurus'},
+            {label: 'X', href: 'https://x.com/docusaurus'},
           ],
         },
         {
           title: 'More',
           items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/syeda-inshrah/Hackathon-01', // FIX: Updated GitHub link
-            },
+            {label: 'Blog', to: '/blog'},
+            {label: 'GitHub', href: 'https://github.com/syeda-inshrah/Hackathon-01'},
           ],
         },
       ],
