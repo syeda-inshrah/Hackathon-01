@@ -2,25 +2,26 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
+// Docusaurus configuration
 const config: Config = {
   title: 'Hackathon Book',
   tagline: 'Documentation for our awesome project',
   favicon: 'img/favicon.ico',
 
+  // Future flags
   future: {
     v4: true,
   },
 
+  // GitHub Pages deployment
   url: 'https://syeda-inshrah.github.io',
   baseUrl: '/Hackathon-01/',
-
   organizationName: 'syeda-inshrah',
   projectName: 'Hackathon-01',
   deploymentBranch: 'gh-pages',
 
   onBrokenLinks: 'throw',
+  onBrokenMarkdownLinks: 'throw',
 
   i18n: {
     defaultLocale: 'en',
@@ -32,8 +33,7 @@ const config: Config = {
       'classic',
       {
         docs: {
-          // ✅ Fixed sidebar path
-          sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: './sidebars.js',
           editUrl:
             'https://github.com/syeda-inshrah/Hackathon-01/tree/main/my-book/',
         },
@@ -50,7 +50,7 @@ const config: Config = {
           onUntruncatedBlogPosts: 'warn',
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: './src/css/custom.css',
         },
       } satisfies Preset.Options,
     ],
@@ -90,23 +90,38 @@ const config: Config = {
           items: [
             {
               label: 'Book Introduction',
-              to: '/docs/01-introduction',
+              to: '/docs/01-introduction', // Fixed link to 01-introduction.md
             },
           ],
         },
         {
           title: 'Community',
           items: [
-            {label: 'Stack Overflow', href: 'https://stackoverflow.com/questions/tagged/docusaurus'},
-            {label: 'Discord', href: 'https://discordapp.com/invite/docusaurus'},
-            {label: 'X', href: 'https://x.com/docusaurus'},
+            {
+              label: 'Stack Overflow',
+              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+            },
+            {
+              label: 'Discord',
+              href: 'https://discordapp.com/invite/docusaurus',
+            },
+            {
+              label: 'X',
+              href: 'https://x.com/docusaurus',
+            },
           ],
         },
         {
           title: 'More',
           items: [
-            {label: 'Blog', to: '/blog'},
-            {label: 'GitHub', href: 'https://github.com/syeda-inshrah/Hackathon-01'},
+            {
+              label: 'Blog',
+              to: '/blog',
+            },
+            {
+              label: 'GitHub',
+              href: 'https://github.com/syeda-inshrah/Hackathon-01',
+            },
           ],
         },
       ],
