@@ -12,7 +12,7 @@ const config: Config = {
   },
 
   url: 'https://syeda-inshrah.github.io',
-  baseUrl: '/Hackathon-01/',
+  baseUrl: '/',
 
   organizationName: 'syeda-inshrah',
   projectName: 'Hackathon-01',
