@@ -31,7 +31,12 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- Education-First Design: Ensure all technical decisions prioritize learning objectives
+- Practical Implementation Focus: Verify implementation includes hands-on elements
+- Test-Driven Learning: Confirm assessment mechanisms are planned
+- Integration with Real Robotics Systems: Validate ROS 2/Gazebo/NVIDIA Isaac integration
+- Modularity and Accessibility: Ensure content is accessible and modular
+- Docusaurus Best Practices: Verify adherence to Docusaurus standards
 
 ## Project Structure
 

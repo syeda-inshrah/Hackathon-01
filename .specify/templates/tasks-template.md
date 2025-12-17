@@ -44,32 +44,32 @@ description: "Task list template for feature implementation"
   ============================================================================
 -->
 
-## Phase 1: Setup (Shared Infrastructure)
+## Phase 1: Setup (Educational Infrastructure)
 
-**Purpose**: Project initialization and basic structure
+**Purpose**: Curriculum initialization and basic structure following Docusaurus best practices
 
-- [ ] T001 Create project structure per implementation plan
-- [ ] T002 Initialize [language] project with [framework] dependencies
-- [ ] T003 [P] Configure linting and formatting tools
+- [ ] T001 Create 4-module curriculum structure per implementation plan
+- [ ] T002 Initialize Docusaurus project with ROS 2/Humanoid Robotics documentation
+- [ ] T003 [P] Configure accessibility and navigation standards per constitution
 
 ---
 
-## Phase 2: Foundational (Blocking Prerequisites)
+## Phase 2: Foundational (Educational Prerequisites)
 
-**Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
+**Purpose**: Core curriculum infrastructure that MUST be complete before ANY module can be developed
 
-**⚠️ CRITICAL**: No user story work can begin until this phase is complete
+**⚠️ CRITICAL**: No module work can begin until this phase is complete
 
 Examples of foundational tasks (adjust based on your project):
 
-- [ ] T004 Setup database schema and migrations framework
-- [ ] T005 [P] Implement authentication/authorization framework
-- [ ] T006 [P] Setup API routing and middleware structure
-- [ ] T007 Create base models/entities that all stories depend on
-- [ ] T008 Configure error handling and logging infrastructure
-- [ ] T009 Setup environment configuration management
+- [ ] T004 Setup Docusaurus sidebar and navigation structure
+- [ ] T005 [P] Establish modular content standards for accessibility
+- [ ] T006 [P] Setup documentation templates for hands-on exercises
+- [ ] T007 Define learning objectives for all 4 modules that each task depends on
+- [ ] T008 Configure assessment and learning outcome tracking
+- [ ] T009 Setup ROS 2/Gazebo/NVIDIA Isaac integration guidelines
 
-**Checkpoint**: Foundation ready - user story implementation can now begin in parallel
+**Checkpoint**: Foundation ready - module development can now begin in parallel
 
 ---
 
